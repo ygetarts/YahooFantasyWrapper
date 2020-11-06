@@ -46,8 +46,10 @@ namespace YahooFantasyWrapper.Client
             {
                 return new EndPoint
                 {
-                    BaseUri = "https://social.yahooapis.com",
-                    Resource = "/v1/user/{0}/profile?format=json"
+                    //BaseUri = "https://social.yahooapis.com",
+                    //Resource = "/v1/user/{0}/profile?format=json"
+                    BaseUri = "https://api.login.yahoo.com",
+                    Resource= "/openid/v1/userinfo"
                 };
             }
         }

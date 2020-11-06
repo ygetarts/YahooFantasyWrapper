@@ -135,4 +135,19 @@ export class InteractiveComponent {
       this.leagueLoaded = true;
     }, error => console.error(error));
   }
+
+  getRosters() {
+    this.loading = true;
+    this.interactiveService.getLeagueDraftResults(this.selectedLeague).subscribe(result => {
+      if (this.leagueLoaded) {
+        this.league.draftResults = result.draftResults;
+        this.league = Object.assign({}, this.league);
+      }
+      else {
+        this.league = result;
+      }
+      this.loading = false;
+      this.leagueLoaded = true;
+    }, error => console.error(error));
+  }
 }

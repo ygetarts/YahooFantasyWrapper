@@ -77,7 +77,7 @@ namespace YahooFantasyWrapper.Client
         /// <returns></returns>
         internal static async Task<T> GetResource<T>(EndPoint endPoint, string AccessToken, string lookup)
         {
-            return await await ResilientCall(async () =>
+            var result = await await ResilientCall(async () =>
             {
                 var xml = await Utils.GetResponseData(endPoint, AccessToken);
                 XmlSerializer serializer = new XmlSerializer(typeof(T));
@@ -90,6 +90,8 @@ namespace YahooFantasyWrapper.Client
                 var resource = (T)serializer.Deserialize(xElement.CreateReader());
                 return resource;
             });
+
+            return result;
         }
 
         private static string GetErrorMessage(XDocument xml)
